@@ -1,0 +1,23 @@
+{% block title %}Socket.io{% endblock %}
+{% block body %}
+    <h1>Socket.io</h1>
+    <p><a href="https://socket.io">Socket.io</a></p>
+
+    <script src="//cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script>
+        var socket = io('{{ config.HTTP_WS_SERVER }}');
+        const msg = 'test';
+        socket.on('connect', function () {
+            console.log('open');
+        });
+
+        socket.on(msg, function(e){
+            console.log('message', e);
+        });
+
+        socket.emit('test');
+
+    </script>
+
+
+{% endblock %}

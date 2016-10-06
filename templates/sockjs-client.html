@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% block title %}sockjs-client{% endblock %}
+
+{% block body %}
+    <h1>sockjs-client</h1>
+    <p><a href="https://github.com/sockjs/sockjs-client">sockjs-client</a></p>
+    <script src="//cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+    <script>
+        var sock = new SockJS('{{ config.HTTP_WS_SERVER }}');
+        sock.onopen = function () {
+            console.log('open');
+            console.log('sending....');
+            sock.send('test');
+        };
+        sock.onmessage = function (e) {
+            console.log('message', e.data);
+            console.log('closing.....');
+        };
+        sock.onclose = function () {
+            console.log('closed');
+        };
+    </script>
+{% endblock %}

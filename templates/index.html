@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block title %}Websocket js clients comparison{% endblock %}
+{% block body %}
+    <div>
+    <h1>Welcome to client libraries comparison</h1>
+    {%- for library_name, library_title in libraries -%}
+        {%- if loop.first -%}<ul>{%- endif -%}
+        <li><a href="{{ url_for('socket_client', library_name=library_name) }}">{{ library_title }}</a></li>
+        {%- if loop.last -%}</ul>{%- endif -%}
+    {%- else -%}
+        <p>No libraries added to comparison yet</p>
+    {%- endfor -%}
+    </div>
+{% endblock %}

@@ -1,0 +1,5 @@
+Flask==0.11.1
+Jinja2==2.8
+gunicorn==19.6.0
+tornado==4.3
+sockjs-tornado==1.0.3
