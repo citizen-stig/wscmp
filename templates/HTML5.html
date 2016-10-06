@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block title %}HTML5 Native {% endblock %}
+{% block body %}
+    <script>
+        var sock = new WebSocket('{{ config.WS_SERVER }}/websocket');
+        sock.onopen = function (event) {
+            console.log('open');
+            console.log('Sending request...');
+            sock.send("test");
+        };
+        sock.onmessage = function (e) {
+            console.log('message', e.data);
+            console.log('closing.....');
+        };
+        sock.onclose = function () {
+            console.log('closed');
+        };
+    </script>
+{% endblock %}
